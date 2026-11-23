@@ -33,6 +33,8 @@ def check_entry(line):
         line.encode("utf-8")
     except UnicodeEncodeError:
         raise ValueError("entry must be valid UTF-8 text")
+    if not line.strip():
+        raise ValueError("entry must contain visible text (not only whitespace)")
     if not 1 <= len(line) <= MAX_LENGTH:
         raise ValueError(
             "entry must be between 1 and %d characters long, got %d"
